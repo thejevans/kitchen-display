@@ -26,6 +26,8 @@ Configuration for the GTFS, GTFS Realtime, and CalDAV entities are in `configura
 
 Stop and route ids for GTFS can be found by exploring [here](https://transitfeeds.com/p/rtd-denver/188)
 
+Configuring the Home Assistant GTFS integration involves downloading the GTFS data from [RTD](https://rtd-denver.com/files/gtfs/google_transit.zip), or whatever other transit service you use, and putting that zip file in the `config/gtfs` directory on your home assistant instance. Using the Studio Code Server is the easiest way to do this. I put mine at `config/gtfs/rtd.zip`. This will have to periodically be redownloaded manually.
+
 I also added zones for Alameda Station and DU so they show up on the map. Zones can be added in Home Assistant in `Settings -> Areas & Zones`.
 
 To make the dashboard, I added a new dashboard in `Settings -> Dashboards` called `Kitchen Display`.  The dashboard only has one view, and the configuration for that view can be found in `kitchen-display.yaml`. You'll need to add your own calendar entities.
