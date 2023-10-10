@@ -1,0 +1,197 @@
+views:
+  - title: Home
+    type: panel
+    theme: amoled
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: custom:digital-clock
+                  - show_current: false
+                    show_forecast: true
+                    type: weather-forecast
+                    entity: weather.kbkf_daynight
+                    forecast_type: hourly
+                    secondary_info_attribute: precipitation_unit
+              - show_current: true
+                show_forecast: true
+                type: weather-forecast
+                entity: weather.kbkf_daynight
+                forecast_type: twice_daily
+                secondary_info_attribute: precipitation_unit
+          - type: horizontal-stack
+            cards:
+              - type: custom:digital-clock
+                timeZone: America/Los_Angeles
+                secondLineFormat: '''San Francisco'''
+              - type: custom:digital-clock
+                timeZone: America/New_York
+                secondLineFormat: '''Washington, DC'''
+              - type: custom:digital-clock
+                timeZone: Europe/London
+                secondLineFormat: '''London'''
+          - type: custom:mod-card
+            card_mod:
+              style:
+                hui-horizontal-stack-card $: |
+                  div#root > :first-child {
+                    width: 30%;
+                    flex: auto;
+                  }
+                  div#root > :last-child {
+                    width: 70%;
+                    flex: auto;
+                  }
+            card:
+              type: horizontal-stack
+              cards:
+                - type: vertical-stack
+                  cards:
+                    - type: custom:mushroom-title-card
+                      title: RTD Schedule
+                      subtitle: Ignores arrivals in the next 10 minutes
+                    - type: entities
+                      entities:
+                        - entity: >-
+                            sensor.e_h_from_alameda_station_to_university_of_denver
+                          name: E/H↓ at Alameda
+                        - entity: sensor.e_from_alameda_station_to_union_station_2
+                          name: E↑ at Alameda
+                        - entity: sensor.d_h_from_alameda_station_to_18th_california
+                          name: D/H↑ at Alameda
+                        - entity: >-
+                            sensor.e_h_from_university_of_denver_to_alameda_station
+                          name: E/H↑ at DU
+                    - type: custom:mushroom-title-card
+                      title: RTD Live Arrival Times
+                    - type: entities
+                      entities:
+                        - type: conditional
+                          conditions:
+                            - entity: sensor.d_from_alameda_station_to_18th_california
+                              state_not: '-'
+                          row:
+                            entity: sensor.d_from_alameda_station_to_18th_california
+                            name: D↑ at Alameda
+                        - type: conditional
+                          conditions:
+                            - entity: sensor.e_from_alameda_station_to_union_station
+                              state_not: '-'
+                          row:
+                            entity: sensor.e_from_alameda_station_to_union_station
+                            name: E↑ at Alameda
+                        - type: conditional
+                          conditions:
+                            - entity: >-
+                                sensor.e_from_alameda_station_to_university_of_denver
+                              state_not: '-'
+                          row:
+                            entity: >-
+                              sensor.e_from_alameda_station_to_university_of_denver
+                            name: E↓ at Alameda
+                        - type: conditional
+                          conditions:
+                            - entity: sensor.h_from_alameda_station_to_18th_california
+                              state_not: '-'
+                          row:
+                            entity: sensor.h_from_alameda_station_to_18th_california
+                            name: H↑ at Alameda
+                        - type: conditional
+                          conditions:
+                            - entity: >-
+                                sensor.h_from_alameda_station_to_university_of_denver
+                              state_not: '-'
+                          row:
+                            entity: >-
+                              sensor.h_from_alameda_station_to_university_of_denver
+                            name: H↓ at Alameda
+                        - type: conditional
+                          conditions:
+                            - entity: >-
+                                sensor.e_from_university_of_denver_to_alameda_station
+                              state_not: '-'
+                          row:
+                            entity: >-
+                              sensor.e_from_university_of_denver_to_alameda_station
+                            name: E↑ at DU
+                        - type: conditional
+                          conditions:
+                            - entity: >-
+                                sensor.h_from_university_of_denver_to_alameda_station
+                              state_not: '-'
+                          row:
+                            entity: >-
+                              sensor.h_from_university_of_denver_to_alameda_station
+                            name: H↑ at DU
+                - type: map
+                  auto_fit: false
+                  entities:
+                    - entity: zone.university_of_denver_station
+                    - entity: sensor.d_northwest
+                      name: D↑
+                    - entity: sensor.e_northwest
+                      name: E↑
+                    - entity: sensor.h_northwest
+                      name: H↑
+                    - entity: sensor.e_southeast
+                      name: E↓
+                    - entity: sensor.h_southeast
+                      name: H↓
+                    - entity: zone.alameda_station
+                  default_zoom: 13
+                  dark_mode: true
+                  aspect_ratio: 95%
+          - type: horizontal-stack
+            cards:
+              - type: custom:atomic-calendar-revive
+                enableModeChange: true
+                entities:
+                  - calendar.CALENDAR1
+                dateFormat: LL
+                showDeclined: false
+                showDate: false
+                showMultiDay: true
+                showMultiDayEventParts: true
+                showDescription: false
+                showWeekDay: true
+                showWeekNumber: false
+                showDatePerEvent: false
+                showTimeRemaining: false
+                hoursOnSameLine: false
+                showMonth: true
+                showCurrentEventLine: false
+                name: PERSON1
+              - type: custom:atomic-calendar-revive
+                enableModeChange: true
+                entities:
+                  - calendar.CALENDAR2
+                dateFormat: LL
+                showDeclined: false
+                showDate: false
+                showMultiDay: true
+                showMultiDayEventParts: true
+                showDescription: false
+                showWeekDay: true
+                showWeekNumber: false
+                showDatePerEvent: false
+                showTimeRemaining: false
+                hoursOnSameLine: false
+                showMonth: true
+                showCurrentEventLine: false
+                name: PERSON2
+          - type: custom:list-card
+            entity: sensor.404_media
+            title: 404 Media
+            feed_attribute: entries
+            row_limit: 5
+            columns:
+              - title: ''
+                field: title
+                add_link: link
+                style:
+                  - text-align: center
+                  - font-size: 1.5rem

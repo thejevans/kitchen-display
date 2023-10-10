@@ -1,0 +1,115 @@
+#Other configuration up here
+
+
+#If you already have sensors defined here, just add the platforms to your list
+sensor:
+  - platform: gtfs_rt
+    trip_update_url: "https://www.rtd-denver.com/files/gtfs-rt/TripUpdate.pb"
+    vehicle_position_url: "https://www.rtd-denver.com/files/gtfs-rt/VehiclePosition.pb"
+    #route_delimiter: "-"
+    departures:
+      - name: E from Alameda Station to University of Denver
+        route: 101E
+        stopid: 23060
+        icon: mdi:tram
+        service_type: Tram
+      - name: H from Alameda Station to University of Denver
+        route: 101H
+        stopid: 23060
+        icon: mdi:tram
+        service_type: Tram
+      - name: D from Alameda Station to 18th & California
+        route: 101D
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+      - name: E from Alameda Station to Union Station
+        route: 101E
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+      - name: H from Alameda Station to 18th & California
+        route: 101H
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+      - name: E from University of Denver to Alameda Station
+        route: 101E
+        stopid: 34014
+        icon: mdi:tram
+        service_type: Tram
+      - name: H from University of Denver to Alameda Station
+        route: 101H
+        stopid: 34014
+        icon: mdi:tram
+        service_type: Tram
+      - name: E Southeast
+        route: 101E
+        stopid: 23060
+        icon: mdi:tram
+        service_type: Tram
+      - name: H Southeast
+        route: 101H
+        stopid: 23060
+        icon: mdi:tram
+        service_type: Tram
+      - name: D Northwest
+        route: 101D
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+      - name: E Northwest
+        route: 101E
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+      - name: H Northwest
+        route: 101H
+        stopid: 23042
+        icon: mdi:tram
+        service_type: Tram
+  - platform: gtfs
+    name: E/H from Alameda Station to University of Denver
+    origin: 23060
+    destination: 25981
+    data: rtd.zip
+    offset: "00:10"
+    include_tomorrow: true
+  - platform: gtfs
+    name: E from Alameda Station to Union Station
+    origin: 23042
+    destination: 25430
+    data: rtd.zip
+    offset: "00:10"
+    include_tomorrow: true
+  - platform: gtfs
+    name: D/H from Alameda Station to 18th & California
+    origin: 23042
+    destination: 23044
+    data: rtd.zip
+    offset: "00:10"
+    include_tomorrow: true
+  - platform: gtfs
+    name: E/H from University of Denver to Alameda Station
+    origin: 34014
+    destination: 23042
+    data: rtd.zip
+    offset: "00:10"
+    include_tomorrow: true
+  - platform: feedparser
+    name: "404 Media"
+    feed_url: "https://404media.co/rss"
+    date_format: "%a, %d %b %Y %H:%M:%S %Z"
+    scan_interval:
+      hours: 1
+    inclusions:
+      - title
+      - link
+    exclusions:
+      - language
+
+calendar:
+  - platform: caldav
+    username: NEXTCLOUD_USER
+    password: !secret caldav
+    url: https://NEXTCLOUD_URL/remote.php/dav
