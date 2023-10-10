@@ -24,6 +24,8 @@ My personal home assistant kiosk display
 # Configuration
 Configuration for the GTFS, GTFS Realtime, and CalDAV entities are in `configuration.yaml`. Add these to your global `configuration.yaml` on your Home Assistant instance. using the Studio Code Server is the easiest way to do this. If you use NextCloud, you can insert your NextCloud URL and username where shown in the config. You will need to  add the password to your `secrets.yaml` file. I live by Alameda Station in Denver and I frequently go to DU, so I need the stop information for those areas, but feel free to use those as examples to modify how you would like.
 
+Stop and route ids for GTFS can be found by exploring [here](https://transitfeeds.com/p/rtd-denver/188)
+
 I also added zones for Alameda Station and DU so they show up on the map. Zones can be added in Home Assistant in `Settings -> Areas & Zones`.
 
 To make the dashboard, I added a new dashboard in `Settings -> Dashboards` called `Kitchen Display`.  The dashboard only has one view, and the configuration for that view can be found in `kitchen-display.yaml`. You'll need to add your own calendar entities.
