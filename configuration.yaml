@@ -76,7 +76,7 @@ sensor:
     offset: "00:10"
     include_tomorrow: true
   - platform: gtfs
-    name: E from Alameda Station to Union Station
+    name: E from Alameda Station to Union Station Schedule
     origin: 23042
     destination: 25430
     data: rtd.zip

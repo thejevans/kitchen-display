@@ -59,7 +59,7 @@ views:
                         - entity: >-
                             sensor.e_h_from_alameda_station_to_university_of_denver
                           name: E/H↓ at Alameda
-                        - entity: sensor.e_from_alameda_station_to_union_station_2
+                        - entity: sensor.e_from_alameda_station_to_union_station_schedule
                           name: E↑ at Alameda
                         - entity: sensor.d_h_from_alameda_station_to_18th_california
                           name: D/H↑ at Alameda
