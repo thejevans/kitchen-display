@@ -43,6 +43,20 @@ The display consists of a vertical 1920x1080 IPS monitor (IPS is important for r
 https://www.raspberrypi.com/software/
 ## Log in to home assistant
 Don't forget to do this!
+
+Alternatively, you can set up your display to automatically log in. The docs for this feature are [here](https://www.home-assistant.io/docs/authentication/providers/#skip-login-page-examples). Here is an example snippet for this type of set up:
+```yaml
+homeassistant:
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - RASPBERRY_PI_IP_ADDRESS/32
+      trusted_users:
+        RASPBERRY_PI_IP_ADDRESS:
+          - HOME_ASSISTANT_USER_ID_FOR_PI_LOGIN
+      allow_bypass_login: true
+    - type: home-assistant
+```
 ## Change display orientation
 https://pimylifeup.com/raspberry-pi-screen-resolution/
 ## Add shell script
